@@ -47,7 +47,6 @@ var TraxBoard = function(org) {
 			this.col_row_array[i][j] = '';
 		}
 	}
-	//TODO: This is not genereted correctly
 	for (j = 0; j <= 8; j++) {
 		var str = '@'+j;
 		var idx1 = 0;
