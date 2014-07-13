@@ -38,7 +38,6 @@
 			$(this).click(function() {
 				initAiWorker(strength);
 			});
-			$('#prompt').dialog('close');
 		});
 	};
 
@@ -69,16 +68,21 @@
 	var initAiWorker = function(strength) {
 		switch (strength) {
 			case 'easy':
-				aiWorker = new Worker('random_ai.js');
+				aiWorker = new Worker('js/random_ai.js');
 				aiWorker.postMessage({'cmd': 'start'});
 				break;
 			default:
 				alert('No AI with that strength');
 		}
 		aiWorker.addEventListener('message', function(e) {
-			$('#loading').fadeOut(500);
-			board.makeMove(e.data.move);
-			updateBoard();
+			if (e.data.res) {
+				console.log('Worker started: '+e.data.res);
+				$('#prompt').dialog('close');
+			} else {
+				$('#loading').fadeOut(500);
+				board.makeMove(e.data.move);
+				updateBoard();
+			}
 		}, false);
 	};
 
@@ -113,7 +117,7 @@
 				if (aiPlayerChosen) {
 					$('#loading').fadeIn(300);
 					//TODO: Get move from AI player
-					aiWorker.postMessage({'cmd':'getmove', 'board':''});
+					aiWorker.postMessage({'cmd':'getmove', 'board':board});
 				}
 			});
 		});

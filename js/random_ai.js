@@ -3,7 +3,7 @@ self.addEventListener('message', function(e) {
 	var data = e.data;
 	switch (data.cmd) {
 		case 'start':
-			self.postMessage('WORKER STARTED: ' + data.msg);
+			self.postMessage({'res': 'OK'});
 			break;
 		case 'getmove':
 			var newMove = getMove(data.board);
@@ -16,5 +16,8 @@ self.addEventListener('message', function(e) {
 	};
 }, false);
 
-var getMove = function(board)
+var getMove = function(board) {
+	self.postMessage({'res': JSON.stringify(board)});
+	var moves = board.uniqueMoves();
+	return moves[Math.floor(Math.random()*moves.length)];
 };
