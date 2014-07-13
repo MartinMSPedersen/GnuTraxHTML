@@ -2273,10 +2273,10 @@ TraxBoard.prototype.posToMoveString = function (col, row, tile) {
 };
 
 TraxBoard.prototype.col_row_array = [];
-TraxBoard.prototype.firstrow = -1;
-TraxBoard.prototype.firstcol = -1;
-TraxBoard.prototype.lastrow = -1;
-TraxBoard.prototype.lastcol = -1;
+TraxBoard.prototype.firstrow = 0;
+TraxBoard.prototype.firstcol = 0;
+TraxBoard.prototype.lastrow = 0;
+TraxBoard.prototype.lastcol = 0;
 TraxBoard.prototype.boardEmpty_save = false;
 TraxBoard.prototype.wtm_save = 0;
 TraxBoard.prototype.gameover_save = 0;
