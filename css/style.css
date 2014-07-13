@@ -1,0 +1,87 @@
+html, body {
+  height: 100%;
+  width: 720px;
+}
+
+#grid {
+    width: 720px;
+    height: 720px;
+	display: -ms-grid;
+	-ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	-ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	border: 1px solid gray;
+}
+
+#grid div {
+	border: 2px dotted black;
+	-ms-grid-column-span: 1;
+	-ms-grid-row-span: 1;
+	z-index: 1;
+	opacity: 1;
+}
+
+#chooser div {
+	width: 80px;
+	height: 80px;
+	float: left;
+}
+
+.en {
+	background-image: url('images/en.gif');
+}
+
+.es {
+	background-image: url('images/es.gif');
+}
+
+.ew {
+	background-image: url('images/ew.gif');
+}
+
+.ne {
+	background-image: url('images/ne.gif');
+}
+
+.ns {
+	background-image: url('images/ns.gif');
+}
+
+.nw {
+	background-image: url('images/nw.gif');
+}
+
+.se {
+	background-image: url('images/se.gif');
+}
+
+.sn {
+	background-image: url('images/sn.gif');
+}
+
+.sw {
+	background-image: url('images/sw.gif');
+}
+
+.we {
+	background-image: url('images/we.gif');
+}
+
+.wn {
+	background-image: url('images/wn.gif');
+}
+
+.ws {
+	background-image: url('images/ws.gif');
+}
+
+.blank {
+	background-image: url('images/blank.gif');
+}
+
+.blank2 {
+	background-image: url('images/blank2.gif');
+}
+
+.hidden {
+	display: none;
+}
