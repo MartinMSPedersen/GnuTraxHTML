@@ -7,6 +7,8 @@ var TraxBoard = function(org) {
 		this.board = [];
 		this.board_save = [];
 		for (i = 0; i < 17; i++) {
+			this.board[i] = [];
+			this.board_save[i] = [];
 			for (j = 0; j < 17; j++) {
 				this.board[i][j] = org.board[i][j];
 				this.board_save[i][j] = org.board_save[i][j];
@@ -45,11 +47,18 @@ var TraxBoard = function(org) {
 			this.col_row_array[i][j] = '';
 		}
 	}
-	for (i = '@'; i <= 'H'; i++) {
-		for (j = '0'; j <= '8'; j++) {
-			var str = ''+i+j;
-			var idx1 = i.charCodeAt(0) - '@'.charCodeAt(0);
-			var idx2 = j.toString().charCodeAt(0) - '0'.charCodeAt(0); 
+	//TODO: This is not genereted correctly
+	for (j = 0; j <= 8; j++) {
+		var str = '@'+j;
+		var idx1 = 0;
+		var idx2 = j; 
+		this.col_row_array[idx1][idx2] = str;
+	}
+	for (i = 65; i <= 72; i++) {
+		for (j = 0; j <= 8; j++) {
+			var str = ''+String.fromCharCode(i)+j;
+			var idx1 = i - 64;
+			var idx2 = j; 
 			this.col_row_array[idx1][idx2] = str;
 		}
 	}

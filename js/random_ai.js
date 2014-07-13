@@ -1,3 +1,5 @@
+importScripts('TraxBoard.js');
+
 //A random AI player for Trax
 self.addEventListener('message', function(e) {
 	var data = e.data;
@@ -17,7 +19,8 @@ self.addEventListener('message', function(e) {
 }, false);
 
 var getMove = function(board) {
-	self.postMessage({'res': JSON.stringify(board)});
-	var moves = board.uniqueMoves();
+	var tmpBoard = new TraxBoard(board);
+	var moves = tmpBoard.uniqueMoves();
+	//self.postMessage({'res': JSON.stringify(moves)});
 	return moves[Math.floor(Math.random()*moves.length)];
 };

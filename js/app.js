@@ -80,6 +80,8 @@
 				$('#prompt').dialog('close');
 			} else {
 				$('#loading').fadeOut(500);
+				console.log(e.data);
+				console.log('MOVE: '+e.data.move);
 				board.makeMove(e.data.move);
 				updateBoard();
 			}
