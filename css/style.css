@@ -37,6 +37,10 @@ html, body {
 	float: left;
 }
 
+#prompt > #aiselect {
+	display: hidden;
+}
+
 .en {
 	background-image: url('images/en.gif');
 }

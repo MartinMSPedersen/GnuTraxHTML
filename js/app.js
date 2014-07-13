@@ -2,21 +2,13 @@
 // * Make the board to automatic resize to the needed size
 // * Implement AI
 
-//0. Before part (see other place)
-//1. Ask user if two player or against ai
-//2. Ask user which type of AI
-//3. Ask user for move
-//4. Ask other player for move (or ai)
-//When game over run after game logic
-
 (function() {
 	"use strict";
 
 	var board;
 	var globalTileToChange = '';
-	var aiPlayerChoosen = false;
+	var aiPlayerChosen = false;
 	var aiWorker;
-
 
 	var pregameLogic = function() {
 		$('#loading').fadeOut(500);
@@ -24,8 +16,42 @@
 		initGameBoard();
 		initTileChooser();
 		initResetGameButton();
-		//TODO: Ask for 1 or 2 player
-		//TODO: Ask for AI strength
+		initPrompt();
+		askForPlayers();
+	};
+
+	var initPrompt = function() {
+		$('#prompt').dialog({
+			autoOpen: false,
+			modal: true
+		});
+		$('#oneplayer').click(function() {
+			aiPlayerChosen = true;
+			askForAi();
+		});
+		$('#twoplayer').click(function() {
+			aiPlayerChosen = false;
+			$('#prompt').dialog('close');
+		});
+		$('#aiselect button').each(function() {
+			var strength = this.id;
+			$(this).click(function() {
+				initAiWorker(strength);
+			});
+			$('#prompt').dialog('close');
+		});
+	};
+
+	var askForPlayers = function() {
+		$('#playerselect').show();
+		$('#aiselect').hide();
+		$('#prompt').dialog('open');
+	};
+
+	var askForAi = function() {
+		$('#playerselect').hide();
+		$('#aiselect').show();
+		$('#prompt').dialog('open');
 	};
 
 	var resetGame = function() {
@@ -59,26 +85,18 @@
 	var initTileChooser = function() {
 		$('#chooser').dialog({
 			autoOpen: false,
-				show: {
-					effect: 'blind',
-					duration: 1
-				},
-				hide: {
-					effect: 'explode',
-					duration: 1
-				},
-				open: function(ui, event) {
-					if (board.gameover != board.NOPLAYER) {
-						$('#chooser').dialog('close');
-						alert('The game is over. Please reset gameboard');
-					}
-				},
-				close: function(ui, event) {
-					$('#chooser div').each(function() {
-						$(this).addClass('hidden');
-					});
-				},
-				modal: true
+			open: function(ui, event) {
+				if (board.gameover != board.NOPLAYER) {
+					$('#chooser').dialog('close');
+					alert('The game is over. Please reset gameboard');
+				}
+			},
+			close: function(ui, event) {
+				$('#chooser div').each(function() {
+					$(this).addClass('hidden');
+				});
+			},
+			modal: true
 		});
 		$('#chooser div').each(function() {
 			var className = this.className;
@@ -92,7 +110,7 @@
 					alert('Galt move: '+e);
 				}
 				updateBoard();
-				if (aiPlayerChoosen) {
+				if (aiPlayerChosen) {
 					$('#loading').fadeIn(300);
 					//TODO: Get move from AI player
 					aiWorker.postMessage({'cmd':'getmove', 'board':''});
