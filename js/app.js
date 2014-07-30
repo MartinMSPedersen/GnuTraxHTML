@@ -71,6 +71,14 @@
 				aiWorker = new Worker('js/random_ai.js');
 				aiWorker.postMessage({'cmd': 'start'});
 				break;
+			case 'simple':
+				aiWorker = new Worker('js/simple_ai.js');
+				aiWorker.postMessage({'cmd': 'start'});
+				break;
+			case 'hard':
+				aiWorker = new Worker('js/hard_ai.js');
+				aiWorker.postMessage({'cmd': 'start'});
+				break;
 			default:
 				alert('No AI with that strength');
 		}
@@ -116,7 +124,7 @@
 					alert('Galt move: '+e);
 				}
 				updateBoard();
-				if (aiPlayerChosen) {
+				if (aiPlayerChosen && (board.gameover === board.NOPLAYER)) {
 					$('#loading').fadeIn(300);
 					//TODO: Get move from AI player
 					aiWorker.postMessage({'cmd':'getmove', 'board':board});

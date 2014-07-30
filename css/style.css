@@ -5,13 +5,24 @@ html, body {
 
 #loading {
 	background:#000 url(images/loader.gif) no-repeat center center;
-	height: 100px;
-	width: 100px;
+	height: 100%;
+	width: 100%;
 	position: fixed;
 	z-index: 1000;
+	left: 0;
+	top: 0;
+	margin: -25px 0 0 -25px;
+	color: #FFFFFF;
+	font-size: 2em;
+	text-align: center;
+}
+
+#loading span {
 	left: 50%;
 	top: 50%;
-	margin: -25px 0 0 -25px;
+	margin-left: -5.5em;
+	margin-top: -1.5em;
+	position: fixed;
 }
 
 #grid {
